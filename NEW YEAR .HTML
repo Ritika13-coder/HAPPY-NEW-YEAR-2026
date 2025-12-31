@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 🤍</title>
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+body { height:100vh; background: radial-gradient(circle at top, #1b1f3b, #0a0a14); display:flex; justify-content:center; align-items:center; font-family:"Segoe UI", sans-serif; overflow:hidden; color:#fff; position:relative; }
+
+/* Start Screen */
+#startScreen { text-align:center; z-index:20; position:absolute; }
+#startScreen button { padding:15px 25px; font-size:18px; border:none; border-radius:12px; background:#fff; color:#000; cursor:pointer; font-weight:bold; }
+
+/* Popup */
+.popup { position: fixed; inset:0; background: rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:15; transition: opacity 0.5s ease; }
+.popup.hide { opacity:0; visibility:hidden; }
+.popup-box { background: rgba(255,255,255,0.12); padding:40px 60px; border-radius:20px; text-align:center; backdrop-filter: blur(12px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); animation: popupScale 1.4s ease forwards; }
+.popup-box h1 { font-size:42px; margin:0; letter-spacing:3px; }
+.popup-box p { margin-top:10px; opacity:0.9; }
+@keyframes popupScale { from {transform:scale(0.7); opacity:0;} to {transform:scale(1); opacity:1;} }
+
+/* Hearts */
+.heart { position:absolute; bottom:-30px; font-size:18px; color:rgba(255,255,255,0.35); animation: floatUp 10s linear infinite; z-index:5; }
+@keyframes floatUp {0%{transform:translateY(0) scale(1);opacity:0;} 20%{opacity:0.6;} 100%{transform:translateY(-120vh) scale(1.4);opacity:0;}}
+
+/* Card */
+.card { width:90%; max-width:480px; padding:45px 40px; border-radius:22px; background:rgba(255,255,255,0.09); backdrop-filter:blur(14px); box-shadow:0 30px 70px rgba(0,0,0,0.45); opacity:0; z-index:10; position:relative; transition: opacity 1s ease; text-align:left; }
+.year { text-align:center; font-size:44px; font-weight:700; letter-spacing:6px; }
+.subtitle { text-align:center; font-size:18px; margin:15px 0 30px; opacity:0.9; }
+.message { font-size:15.5px; line-height:1.75; opacity:0.95; }
+.quote { margin:22px 0; text-align:center; font-style:italic; font-size:16px; opacity:0.95; }
+.footer { margin-top:30px; text-align:center; font-size:15px; }
+
+/* Show card */
+.card.show { opacity:1; }
+</style>
+</head>
+<body>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="Ye vada Raha (1).mp3" type="audio/mpeg">
+</audio>
+
+<!-- Start Screen -->
+<div id="startScreen">
+  <p style="font-size:20px; margin-bottom:20px;">Tap the button below to start the music and see your New Year card ✨</p>
+  <button id="startBtn">🎵 Play & See Card</button>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h1>Happy New Year ✨</h1>
+    <p>Welcome to 2026 🤍</p>
+  </div>
+</div>
+
+<!-- Hearts -->
+<span class="heart" style="left:10%; animation-delay:0s;">🤍</span>
+<span class="heart" style="left:25%; animation-delay:3s;">🤍</span>
+<span class="heart" style="left:45%; animation-delay:6s;">🤍</span>
+<span class="heart" style="left:65%; animation-delay:2s;">🤍</span>
+<span class="heart" style="left:85%; animation-delay:5s;">🤍</span>
+
+<!-- Card -->
+<div class="card" id="card">
+  <div class="year">2026</div>
+  <div class="subtitle">Happy New Year ✨</div>
+
+  <div class="message">
+    Thank you for being an <strong>amazing, incredible brother and the best friend I could ever ask for</strong>.
+    Your presence in my life means more to me than I’ve ever been able to explain.
+    I may not say it often, but I’m always deeply thankful for our friendship and this bond.
+    <br><br>
+    We’re not connected by blood, but by heart—and that makes it even more special.
+    I truly wish that I never lose this bond.
+    I pray you achieve everything you want in life, every dream, every goal.
+  </div>
+
+  <div class="quote">
+    “The year may change, but our friendship won’t.  
+    This bond will only grow stronger with time.”
+  </div>
+
+  <div class="quote">
+    “Tere saare dukh mujhe mil jaaye,  
+    aur meri umar bhi tujhe lag jaaye.”
+  </div>
+
+  <div class="message">
+    Thank you for always standing by me, for being there no matter what.
+  </div>
+
+  <div class="footer">
+    Happy New Year 🤍
+  </div>
+</div>
+
+<script>
+const startBtn = document.getElementById('startBtn');
+const startScreen = document.getElementById('startScreen');
+const music = document.getElementById('bgMusic');
+const popup = document.getElementById('popup');
+const card = document.getElementById('card');
+
+startBtn.addEventListener('click', () => {
+    // Hide start screen
+    startScreen.style.display = 'none';
+    // Play music
+    music.play();
+    // Show popup and card
+    popup.classList.remove('hide');
+    setTimeout(() => { popup.classList.add('hide'); card.classList.add('show'); }, 2000);
+});
+</script>
+
+</body>
+</html>
